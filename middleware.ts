@@ -6,8 +6,13 @@ const COOKIE = 'gw_auth'
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
 
-  // 認証ページと静的ファイルはスルー
-  if (pathname.startsWith('/login') || pathname.startsWith('/_next') || pathname.startsWith('/cover')) {
+  // 認証ページ・APIルート・静的ファイルはスルー
+  if (
+    pathname.startsWith('/login') ||
+    pathname.startsWith('/api/') ||
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/cover')
+  ) {
     return NextResponse.next()
   }
 
