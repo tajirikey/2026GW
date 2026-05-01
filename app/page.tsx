@@ -105,7 +105,6 @@ const DAYS: Day[] = [
         endTime: '11:27',
         kind: 'train',
         title: '特急あずさ',
-        sub: '武蔵境 → 松本',
         note: '国分寺・立川で乗換。忘れ物チェック！車窓から富士山が見えるかも🗻',
         isTransport: true,
         from: '武蔵境',
@@ -138,8 +137,8 @@ const DAYS: Day[] = [
         time: '15:45',
         endTime: '17:30',
         kind: 'car',
-        title: '松本 → 白馬へドライブ',
-        sub: '約1時間45分 北アルプスの山々を眺めながら',
+        title: 'ドライブ',
+        sub: '約1時間45分　北アルプスの山々を眺めながら',
         isTransport: true,
         from: '松本',
         to: '白馬',
@@ -212,7 +211,7 @@ const DAYS: Day[] = [
       {
         time: '13:00',
         kind: 'car',
-        title: '白馬岩岳マウンテンリゾートへ移動',
+        title: '移動',
         sub: '車で数分',
         isTransport: true,
         from: '昼食場所',
@@ -277,7 +276,7 @@ const DAYS: Day[] = [
         time: '08:00',
         endTime: '09:45',
         kind: 'car',
-        title: '白馬 → 松本ドライブ',
+        title: 'ドライブ',
         sub: '約1時間45分　チェックアウト・忘れ物チェック！',
         isTransport: true,
         from: '白馬',
@@ -334,7 +333,6 @@ const DAYS: Day[] = [
         endTime: '16:20',
         kind: 'train',
         title: '特急あずさ',
-        sub: '松本 → 武蔵境',
         note: 'お疲れ様！車内でお土産の品定めをしながら帰ろう🎁',
         isTransport: true,
         from: '松本',
@@ -414,7 +412,6 @@ function TransportBand({ event, accent }: { event: Event; accent: string }) {
               <span className="font-semibold text-gray-700">{event.to}</span>
             </div>
           )}
-          {event.sub && <div className="text-sm text-gray-600 mt-0.5">{event.sub}</div>}
         </div>
       </div>
     </div>
