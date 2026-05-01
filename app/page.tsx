@@ -41,9 +41,10 @@ interface Day {
   label: string
   heading: string
   sub: string
-  color: string        // Tailwind bg class for header
-  accent: string       // hex for timeline line
-  lightBg: string      // Tailwind bg class for section
+  color: string
+  accent: string
+  lightBg: string
+  char: string
   events: Event[]
 }
 
@@ -99,6 +100,7 @@ const DAYS: Day[] = [
     color: 'from-orange-400 to-yellow-400',
     accent: '#F97316',
     lightBg: 'bg-orange-50',
+    char: '/char-g-point.png',
     events: [
       {
         time: '08:22',
@@ -178,6 +180,7 @@ const DAYS: Day[] = [
     color: 'from-sky-400 to-blue-500',
     accent: '#0EA5E9',
     lightBg: 'bg-sky-50',
+    char: '/char-g-search.png',
     events: [
       {
         time: '05:45',
@@ -281,6 +284,7 @@ const DAYS: Day[] = [
     color: 'from-green-500 to-emerald-500',
     accent: '#16A34A',
     lightBg: 'bg-green-50',
+    char: '/char-w-heart.png',
     events: [
       {
         time: '08:00',
@@ -474,15 +478,23 @@ function DaySection({ day, active }: { day: Day; active: boolean }) {
   return (
     <section className={`${day.lightBg} rounded-3xl p-4 md:p-6 shadow-inner`}>
       {/* Day header */}
-      <div className={`bg-gradient-to-r ${day.color} rounded-2xl p-4 md:p-6 mb-6 text-white shadow-lg`}>
-        <div className="flex items-center gap-3 flex-wrap">
+      <div className={`relative bg-gradient-to-r ${day.color} rounded-2xl p-4 md:p-6 mb-6 text-white shadow-lg overflow-visible`}>
+        <div className="flex items-center gap-3 flex-wrap pr-20">
           <span className="bg-white/30 backdrop-blur-sm text-white font-black text-xl px-4 py-1 rounded-full">
             {day.label}
           </span>
           <span className="font-bold text-lg">{day.date}</span>
         </div>
-        <h2 className="text-2xl md:text-3xl font-black mt-2 leading-tight">{day.heading}</h2>
-        <p className="text-white/80 text-sm mt-1">{day.sub}</p>
+        <h2 className="text-2xl md:text-3xl font-black mt-2 leading-tight pr-20">{day.heading}</h2>
+        <p className="text-white/80 text-sm mt-1 pr-20">{day.sub}</p>
+        {/* Character */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={day.char}
+          alt=""
+          className="absolute -bottom-4 right-2 w-24 md:w-28 drop-shadow-lg animate-float pointer-events-none"
+          style={{ animationDelay: '0.2s' }}
+        />
       </div>
 
       {/* Timeline */}
@@ -625,6 +637,14 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Characters greeting */}
+        <div className="relative max-w-2xl mx-auto px-4 flex justify-between items-end -mt-4 mb-0 pointer-events-none">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/char-g-run.png" alt="" className="w-20 md:w-24 animate-float drop-shadow-lg" style={{ animationDelay: '0s' }} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/char-w-wave.png" alt="" className="w-20 md:w-24 animate-float drop-shadow-lg" style={{ animationDelay: '0.4s' }} />
+        </div>
+
         {/* Trip stats bar */}
         <div className="max-w-2xl mx-auto px-4 py-4">
           <div className="bg-white rounded-2xl shadow-md p-4 flex flex-wrap justify-around gap-3 text-center">
@@ -669,17 +689,22 @@ export default function Home() {
           <DaySection key={day.id} day={day} active={activeDay === day.id} />
         ))}
 
-        {/* Footer fun */}
-        <div className="mt-8 text-center">
-          <div className="text-4xl mb-2 flex justify-center gap-2">
-            <span className="sparkle">⭐</span>
-            <span className="sparkle">🎉</span>
-            <span className="sparkle">⭐</span>
-          </div>
-          <p className="font-black text-xl text-gray-700">楽しいGWにしようね！！</p>
-          <p className="text-gray-500 text-sm mt-1">がちゃ＆わちゃと一緒に大冒険 🌟</p>
-          <div className="mt-4 text-3xl flex justify-center gap-3 animate-bounce-slow">
-            <span>🏔️</span><span>🚗</span><span>🏊</span><span>🎈</span><span>♨️</span><span>🏯</span>
+        {/* Footer */}
+        <div className="mt-10 text-center">
+          <div className="flex justify-center items-end gap-4 mb-4">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/char-w-shy.png" alt="" className="w-20 animate-float drop-shadow-lg" style={{ animationDelay: '0.3s' }} />
+            <div className="pb-4">
+              <div className="flex justify-center gap-1 mb-2">
+                <span className="sparkle text-2xl">⭐</span>
+                <span className="sparkle text-2xl" style={{ animationDelay: '0.3s' }}>🎉</span>
+                <span className="sparkle text-2xl" style={{ animationDelay: '0.6s' }}>⭐</span>
+              </div>
+              <p className="font-black text-xl text-gray-700">楽しいGWにしようね！！</p>
+              <p className="text-gray-500 text-sm mt-1">がちゃ＆わちゃと一緒に大冒険 🌟</p>
+            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/char-g-run.png" alt="" className="w-20 animate-float drop-shadow-lg scale-x-[-1]" style={{ animationDelay: '0.1s' }} />
           </div>
         </div>
       </div>
