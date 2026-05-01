@@ -33,6 +33,7 @@ interface Event {
   isTransport?: boolean
   from?: string
   to?: string
+  link?: string
 }
 
 interface Day {
@@ -111,6 +112,7 @@ const DAYS: Day[] = [
         isTransport: true,
         from: '武蔵境',
         to: '立川',
+        link: 'https://www.google.com/maps/dir/?api=1&origin=武蔵境駅&destination=立川駅&travelmode=transit',
       },
       {
         time: '08:45',
@@ -121,12 +123,14 @@ const DAYS: Day[] = [
         isTransport: true,
         from: '立川',
         to: '松本',
+        link: 'https://www.google.com/maps/dir/?api=1&origin=立川駅&destination=松本駅&travelmode=transit',
       },
       {
         time: '11:27',
         kind: 'arrive',
         title: '松本駅 到着',
         sub: '駅周辺でちょっと休憩',
+        link: 'https://www.google.com/maps/search/?api=1&query=松本駅',
       },
       {
         time: '12:00',
@@ -135,6 +139,7 @@ const DAYS: Day[] = [
         sub: '松本駅周辺のレンタカー店',
         note: '免許証・予約確認書を忘れずに！',
         highlight: true,
+        link: 'https://www.google.com/maps/search/?api=1&query=レンタカー+松本駅',
       },
       {
         time: '12:20',
@@ -144,6 +149,7 @@ const DAYS: Day[] = [
         sub: '松本市総合体育館横のプール施設',
         note: 'みんなでぱしゃぱしゃ🌊 水着・タオル・ゴーグル必須！',
         highlight: true,
+        link: 'https://www.google.com/maps/search/?api=1&query=ラーラ松本',
       },
       {
         time: '15:45',
@@ -154,6 +160,7 @@ const DAYS: Day[] = [
         isTransport: true,
         from: '松本',
         to: '白馬',
+        link: 'https://www.google.com/maps/dir/?api=1&origin=松本駅&destination=白馬村,長野県&travelmode=driving',
       },
       {
         time: '17:30',
@@ -197,6 +204,7 @@ const DAYS: Day[] = [
         sub: '白馬の朝焼けを空中から満喫！',
         note: '雨・強風の場合は中止あり。当日確認を🌤',
         highlight: true,
+        link: 'https://www.google.com/maps/search/?api=1&query=白馬+熱気球+係留体験',
       },
       {
         time: '07:15',
@@ -213,6 +221,7 @@ const DAYS: Day[] = [
         sub: 'ジップライン・クライミング・アスレチック',
         note: '動きやすい服装で！水分補給忘れずに💪',
         highlight: true,
+        link: 'https://www.google.com/maps/search/?api=1&query=白馬EXアドベンチャー',
       },
       {
         time: '11:45',
@@ -220,6 +229,7 @@ const DAYS: Day[] = [
         kind: 'meal',
         title: '昼食',
         sub: 'お腹ぺこぺこ！がっつり食べよう🍜',
+        link: 'https://www.google.com/maps/search/?api=1&query=白馬村+レストラン+ランチ',
       },
       {
         time: '13:00',
@@ -229,6 +239,7 @@ const DAYS: Day[] = [
         isTransport: true,
         from: '昼食場所',
         to: '白馬岩岳',
+        link: 'https://www.google.com/maps/dir/?api=1&origin=白馬村&destination=白馬岩岳マウンテンリゾート&travelmode=driving',
       },
       {
         time: '13:00',
@@ -238,6 +249,7 @@ const DAYS: Day[] = [
         sub: 'ゴンドラで山頂へ',
         note: '北アルプスの絶景！写真撮りまくり📸',
         highlight: true,
+        link: 'https://www.google.com/maps/search/?api=1&query=白馬岩岳マウンテンリゾート',
       },
       {
         time: '13:30',
@@ -247,6 +259,7 @@ const DAYS: Day[] = [
         sub: '超高所ブランコ！スリル満点🎢',
         note: '勇気を出してチャレンジ！めっちゃ怖いけど最高らしい',
         highlight: true,
+        link: 'https://www.google.com/maps/search/?api=1&query=白馬岩岳+ジャイアントスウィング',
       },
       {
         time: '15:30',
@@ -257,6 +270,7 @@ const DAYS: Day[] = [
         isTransport: true,
         from: '岩岳山頂',
         to: '温泉',
+        link: 'https://www.google.com/maps/dir/?api=1&origin=白馬岩岳マウンテンリゾート&destination=白馬+温泉&travelmode=driving',
       },
       {
         time: '16:00',
@@ -266,6 +280,7 @@ const DAYS: Day[] = [
         sub: '疲れた体を癒す至福のひととき',
         note: 'タオル・着替えを準備しておこう',
         highlight: true,
+        link: 'https://www.google.com/maps/search/?api=1&query=白馬村+温泉',
       },
       {
         time: '夜',
@@ -295,6 +310,7 @@ const DAYS: Day[] = [
         isTransport: true,
         from: '白馬',
         to: '松本城周辺',
+        link: 'https://www.google.com/maps/dir/?api=1&origin=白馬村,長野県&destination=松本城&travelmode=driving',
       },
       {
         time: '09:45',
@@ -302,6 +318,7 @@ const DAYS: Day[] = [
         kind: 'arrive',
         title: '松本城周辺 到着・駐車',
         sub: '周辺の駐車場を利用',
+        link: 'https://www.google.com/maps/search/?api=1&query=松本城+駐車場',
       },
       {
         time: '10:00',
@@ -311,6 +328,7 @@ const DAYS: Day[] = [
         sub: '国宝！日本最古の五重六階の天守閣🏯',
         note: '天守の中は急な階段。小さい子注意！',
         highlight: true,
+        link: 'https://www.google.com/maps/search/?api=1&query=松本城',
       },
       {
         time: '11:15',
@@ -319,6 +337,7 @@ const DAYS: Day[] = [
         title: 'なわて通り・軽い散策',
         sub: 'カエルグッズが有名な商店街。かわいいお土産を探そう🐸',
         note: 'アイスや甘いものも食べ歩きしよう',
+        link: 'https://www.google.com/maps/search/?api=1&query=なわて通り+松本',
       },
       {
         time: '11:45',
@@ -326,6 +345,7 @@ const DAYS: Day[] = [
         kind: 'fuel',
         title: '給油・レンタカー返却準備',
         sub: '返却前に満タン給油を忘れずに！',
+        link: 'https://www.google.com/maps/search/?api=1&query=ガソリンスタンド+松本市',
       },
       {
         time: '12:30',
@@ -341,6 +361,7 @@ const DAYS: Day[] = [
         sub: '信州そば・山賊焼きなど🍜 お土産もここで！',
         note: '信州そば or 山賊焼きがおすすめ',
         highlight: true,
+        link: 'https://www.google.com/maps/search/?api=1&query=松本駅+ランチ+信州そば',
       },
       {
         time: '13:45',
@@ -351,6 +372,7 @@ const DAYS: Day[] = [
         isTransport: true,
         from: '松本',
         to: '武蔵境',
+        link: 'https://www.google.com/maps/dir/?api=1&origin=松本駅&destination=武蔵境駅&travelmode=transit',
       },
       {
         time: '16:20',
@@ -358,6 +380,7 @@ const DAYS: Day[] = [
         title: '武蔵境 到着！',
         sub: '楽しかった〜！また行こうね🌟',
         highlight: true,
+        link: 'https://www.google.com/maps/search/?api=1&query=武蔵境駅',
       },
     ],
   },
@@ -403,6 +426,27 @@ function Bunting() {
 }
 
 function TransportBand({ event, accent }: { event: Event; accent: string }) {
+  const inner = (
+    <div
+      className={`flex-1 rounded-2xl p-4 flex items-center gap-3 shadow-sm my-1 ${event.link ? 'active:opacity-70' : ''}`}
+      style={{ backgroundColor: `${accent}18` }}
+    >
+      <div className="flex-1">
+        <div className="flex items-center gap-1.5">
+          <span className="text-lg leading-none">{ICONS[event.kind]}</span>
+          <span className="font-bold text-gray-800">{event.title}</span>
+          {event.link && <span className="text-xs text-gray-400 ml-1">↗</span>}
+        </div>
+        {event.from && event.to && (
+          <div className="flex items-center gap-1 text-sm mt-1">
+            <span className="font-semibold text-gray-700">{event.from}</span>
+            <span className="text-gray-400">→</span>
+            <span className="font-semibold text-gray-700">{event.to}</span>
+          </div>
+        )}
+      </div>
+    </div>
+  )
   return (
     <div className="flex gap-3 my-1">
       <div className="flex flex-col items-center w-16 flex-shrink-0">
@@ -410,30 +454,44 @@ function TransportBand({ event, accent }: { event: Event; accent: string }) {
         <div className="w-1 flex-1 rounded-full mt-1" style={{ backgroundColor: accent, minHeight: 40 }} />
         <span className="text-xs font-bold text-gray-500">{event.endTime}</span>
       </div>
-      <div
-        className="flex-1 rounded-2xl p-4 flex items-center gap-3 shadow-sm my-1"
-        style={{ backgroundColor: `${accent}18` }}
-      >
-        <div className="flex-1">
-          <div className="flex items-center gap-1.5">
-            <span className="text-lg leading-none">{ICONS[event.kind]}</span>
-            <span className="font-bold text-gray-800">{event.title}</span>
-          </div>
-          {event.from && event.to && (
-            <div className="flex items-center gap-1 text-sm mt-1">
-              <span className="font-semibold text-gray-700">{event.from}</span>
-              <span className="text-gray-400">→</span>
-              <span className="font-semibold text-gray-700">{event.to}</span>
-            </div>
-          )}
-        </div>
-      </div>
+      {event.link
+        ? <a href={event.link} target="_blank" rel="noopener noreferrer" className="flex-1">{inner}</a>
+        : <div className="flex-1">{inner}</div>
+      }
     </div>
   )
 }
 
 function EventCard({ event, accent }: { event: Event; accent: string }) {
   const dotColor = KIND_COLOR[event.kind]
+  const cardClass = `event-card flex-1 rounded-2xl p-3 shadow-sm pb-1 ${
+    event.highlight ? 'border-2 bg-white' : 'bg-white/70 border border-gray-100'
+  } ${event.link ? 'active:opacity-70' : ''}`
+  const cardStyle = event.highlight ? { borderColor: accent } : {}
+
+  const cardInner = (
+    <>
+      <div className="flex items-start gap-2">
+        <div className={`w-8 h-8 rounded-full ${dotColor} flex items-center justify-center flex-shrink-0 shadow-sm`}>
+          <span className="text-base leading-none">{ICONS[event.kind]}</span>
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-1">
+            <span className="font-bold text-gray-800 leading-tight">{event.title}</span>
+            {event.link && <span className="text-xs text-gray-400">↗</span>}
+          </div>
+          {event.sub && <div className="text-sm text-gray-600 mt-0.5">{event.sub}</div>}
+        </div>
+      </div>
+      {event.note && (
+        <div className="mt-2 flex items-start gap-1.5 bg-yellow-50 rounded-xl p-2">
+          <span className="text-sm">📝</span>
+          <span className="text-xs text-gray-700 leading-relaxed">{event.note}</span>
+        </div>
+      )}
+    </>
+  )
+
   return (
     <div className="flex gap-3 my-1">
       <div className="flex flex-col items-center w-16 flex-shrink-0">
@@ -445,30 +503,10 @@ function EventCard({ event, accent }: { event: Event; accent: string }) {
           </>
         )}
       </div>
-      <div
-        className={`event-card flex-1 rounded-2xl p-3 shadow-sm pb-1 ${
-          event.highlight
-            ? 'border-2 bg-white'
-            : 'bg-white/70 border border-gray-100'
-        }`}
-        style={event.highlight ? { borderColor: accent } : {}}
-      >
-        <div className="flex items-start gap-2">
-          <div className={`w-8 h-8 rounded-full ${dotColor} flex items-center justify-center flex-shrink-0 shadow-sm`}>
-            <span className="text-base leading-none">{ICONS[event.kind]}</span>
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="font-bold text-gray-800 leading-tight">{event.title}</div>
-            {event.sub && <div className="text-sm text-gray-600 mt-0.5">{event.sub}</div>}
-          </div>
-        </div>
-        {event.note && (
-          <div className="mt-2 flex items-start gap-1.5 bg-yellow-50 rounded-xl p-2">
-            <span className="text-sm">📝</span>
-            <span className="text-xs text-gray-700 leading-relaxed">{event.note}</span>
-          </div>
-        )}
-      </div>
+      {event.link
+        ? <a href={event.link} target="_blank" rel="noopener noreferrer" className={cardClass} style={cardStyle}>{cardInner}</a>
+        : <div className={cardClass} style={cardStyle}>{cardInner}</div>
+      }
     </div>
   )
 }
