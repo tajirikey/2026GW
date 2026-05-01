@@ -102,19 +102,11 @@ const DAYS: Day[] = [
     events: [
       {
         time: '08:22',
-        kind: 'start',
-        title: '武蔵境駅 出発！',
-        sub: '中央線で国分寺・立川で乗換',
-        note: '忘れ物チェック！チケット・着替え・おやつ',
-        highlight: false,
-      },
-      {
-        time: '08:22',
         endTime: '11:27',
         kind: 'train',
         title: '特急あずさ',
         sub: '武蔵境 → 松本',
-        note: '国分寺・立川で乗換。車窓から富士山が見えるかも🗻',
+        note: '国分寺・立川で乗換。忘れ物チェック！車窓から富士山が見えるかも🗻',
         isTransport: true,
         from: '武蔵境',
         to: '松本',
@@ -283,16 +275,10 @@ const DAYS: Day[] = [
     events: [
       {
         time: '08:00',
-        kind: 'start',
-        title: '白馬の宿を出発',
-        sub: 'チェックアウト・忘れ物チェック！',
-      },
-      {
-        time: '08:00',
         endTime: '09:45',
         kind: 'car',
         title: '白馬 → 松本ドライブ',
-        sub: '約1時間45分',
+        sub: '約1時間45分　チェックアウト・忘れ物チェック！',
         isTransport: true,
         from: '白馬',
         to: '松本城周辺',
@@ -342,13 +328,6 @@ const DAYS: Day[] = [
         sub: '信州そば・山賊焼きなど🍜 お土産もここで！',
         note: '信州そば or 山賊焼きがおすすめ',
         highlight: true,
-      },
-      {
-        time: '13:45',
-        kind: 'train',
-        title: '松本駅 出発',
-        sub: '特急あずさで帰宅',
-        highlight: false,
       },
       {
         time: '13:45',
@@ -424,7 +403,10 @@ function TransportBand({ event, accent }: { event: Event; accent: string }) {
         style={{ backgroundColor: `${accent}18` }}
       >
         <div className="flex-1">
-          <div className="font-bold text-gray-800">{event.title}</div>
+          <div className="flex items-center gap-1.5">
+            <span className="text-lg leading-none">{ICONS[event.kind]}</span>
+            <span className="font-bold text-gray-800">{event.title}</span>
+          </div>
           {event.from && event.to && (
             <div className="flex items-center gap-1 text-sm mt-1">
               <span className="font-semibold text-gray-700">{event.from}</span>
