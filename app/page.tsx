@@ -453,39 +453,29 @@ function EventCard({ event, accent }: { event: Event; accent: string }) {
           </>
         )}
       </div>
-      <div className="flex gap-2 flex-1 items-start pb-1">
-        <div className={`w-8 h-8 rounded-full ${dotColor} flex items-center justify-center flex-shrink-0 shadow-sm mt-0.5`}>
-          <span className="text-base leading-none">{ICONS[event.kind]}</span>
-        </div>
-        <div
-          className={`event-card flex-1 rounded-2xl p-3 shadow-sm ${
-            event.highlight
-              ? 'border-2 bg-white'
-              : 'bg-white/70 border border-gray-100'
-          }`}
-          style={event.highlight ? { borderColor: accent } : {}}
-        >
-          <div className="flex items-start justify-between gap-2">
-            <div>
-              {event.highlight && (
-                <span
-                  className="inline-block text-xs font-bold text-white px-2 py-0.5 rounded-full mb-1"
-                  style={{ backgroundColor: accent }}
-                >
-                  ★ おすすめ
-                </span>
-              )}
-              <div className="font-bold text-gray-800 leading-tight">{event.title}</div>
-              {event.sub && <div className="text-sm text-gray-600 mt-0.5">{event.sub}</div>}
-            </div>
+      <div
+        className={`event-card flex-1 rounded-2xl p-3 shadow-sm pb-1 ${
+          event.highlight
+            ? 'border-2 bg-white'
+            : 'bg-white/70 border border-gray-100'
+        }`}
+        style={event.highlight ? { borderColor: accent } : {}}
+      >
+        <div className="flex items-start gap-2">
+          <div className={`w-8 h-8 rounded-full ${dotColor} flex items-center justify-center flex-shrink-0 shadow-sm`}>
+            <span className="text-base leading-none">{ICONS[event.kind]}</span>
           </div>
-          {event.note && (
-            <div className="mt-2 flex items-start gap-1.5 bg-yellow-50 rounded-xl p-2">
-              <span className="text-sm">📝</span>
-              <span className="text-xs text-gray-700 leading-relaxed">{event.note}</span>
-            </div>
-          )}
+          <div className="flex-1 min-w-0">
+            <div className="font-bold text-gray-800 leading-tight">{event.title}</div>
+            {event.sub && <div className="text-sm text-gray-600 mt-0.5">{event.sub}</div>}
+          </div>
         </div>
+        {event.note && (
+          <div className="mt-2 flex items-start gap-1.5 bg-yellow-50 rounded-xl p-2">
+            <span className="text-sm">📝</span>
+            <span className="text-xs text-gray-700 leading-relaxed">{event.note}</span>
+          </div>
+        )}
       </div>
     </div>
   )
@@ -523,6 +513,40 @@ function DaySection({ day, active }: { day: Day; active: boolean }) {
 // ───────────────────────────────────────────
 // Main page
 // ───────────────────────────────────────────
+function CoverImage() {
+  const [failed, setFailed] = useState(false)
+
+  if (failed) {
+    return (
+      <div
+        className="w-full py-20 px-6 flex flex-col items-center justify-center text-center"
+        style={{ background: 'linear-gradient(160deg, #FFD700 0%, #FF8C00 25%, #FF4500 50%, #FF69B4 75%, #4169E1 100%)' }}
+      >
+        <div className="text-6xl mb-4 flex gap-3">🏔️🎈🚗</div>
+        <p className="text-white text-base font-bold mb-2 drop-shadow">家族でたのしむ！</p>
+        <h1 className="text-white font-black text-5xl md:text-6xl leading-tight drop-shadow-lg mb-4">
+          ぶっ飛べ！<br />ゴールデン<br />ウィーク<br />2026
+        </h1>
+        <div className="flex gap-6 mt-2">
+          <span className="bg-white/20 backdrop-blur text-white font-black text-lg px-4 py-2 rounded-xl">白馬 HAKUBA</span>
+          <span className="bg-white/20 backdrop-blur text-white font-black text-lg px-4 py-2 rounded-xl">松本 MATSUMOTO</span>
+        </div>
+        <p className="text-white/70 text-xs mt-6">一緒に冒険！がちゃ ＆ わちゃ 🌟</p>
+      </div>
+    )
+  }
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/cover.jpg"
+      alt="ぶっ飛べ！ゴールデンウィーク2026"
+      className="w-full h-auto object-cover"
+      onError={() => setFailed(true)}
+    />
+  )
+}
+
 export default function Home() {
   const [activeDay, setActiveDay] = useState(1)
 
@@ -545,36 +569,7 @@ export default function Home() {
         {/* Cover image */}
         <div className="relative w-full max-w-2xl mx-auto px-4 pt-2 pb-0">
           <div className="relative w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/cover.jpg"
-              alt="ぶっ飛べ！ゴールデンウィーク2026"
-              className="w-full h-auto object-cover"
-              onError={(e) => {
-                const target = e.currentTarget
-                target.style.display = 'none'
-                const fallback = document.getElementById('cover-fallback')
-                if (fallback) fallback.style.display = 'flex'
-              }}
-            />
-            {/* Fallback when cover.jpg is not yet added */}
-            <div
-              id="cover-fallback"
-              className="hidden w-full py-16 px-6 flex-col items-center justify-center text-center"
-              style={{ background: 'linear-gradient(135deg, #FFD700, #FF8C00, #FF4500, #FF69B4, #4169E1, #32CD32)' }}
-            >
-              <div className="text-6xl mb-4">🏔️ 🎈 🚗</div>
-              <p className="text-white text-sm font-bold mb-2">家族でたのしむ！</p>
-              <h1 className="text-white font-black text-4xl md:text-5xl leading-tight drop-shadow-lg">
-                ぶっ飛べ！<br />ゴールデン<br />ウィーク<br />2026
-              </h1>
-              <div className="mt-4 flex gap-4 text-4xl">
-                <span>白馬</span><span>×</span><span>松本</span>
-              </div>
-              <p className="text-white/80 text-xs mt-2">
-                ※ cover.jpg を public/ に置くとポスター表示になります
-              </p>
-            </div>
+            <CoverImage />
           </div>
         </div>
 
