@@ -420,8 +420,8 @@ function TransportBand({ event, accent }: { event: Event; accent: string }) {
         <span className="text-xs font-bold text-gray-500">{event.endTime}</span>
       </div>
       <div
-        className="flex-1 rounded-2xl p-4 flex items-center gap-3 shadow-sm border-l-4 my-1"
-        style={{ borderColor: accent, backgroundColor: `${accent}18` }}
+        className="flex-1 rounded-2xl p-4 flex items-center gap-3 shadow-sm my-1"
+        style={{ backgroundColor: `${accent}18` }}
       >
         <div className="flex-1">
           <div className="font-bold text-gray-800">{event.title}</div>
