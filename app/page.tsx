@@ -514,36 +514,100 @@ function DaySection({ day, active }: { day: Day; active: boolean }) {
 // Main page
 // ───────────────────────────────────────────
 function CoverImage() {
-  const [failed, setFailed] = useState(false)
-
-  if (failed) {
-    return (
-      <div
-        className="w-full py-20 px-6 flex flex-col items-center justify-center text-center"
-        style={{ background: 'linear-gradient(160deg, #FFD700 0%, #FF8C00 25%, #FF4500 50%, #FF69B4 75%, #4169E1 100%)' }}
-      >
-        <div className="text-6xl mb-4 flex gap-3">🏔️🎈🚗</div>
-        <p className="text-white text-base font-bold mb-2 drop-shadow">家族でたのしむ！</p>
-        <h1 className="text-white font-black text-5xl md:text-6xl leading-tight drop-shadow-lg mb-4">
-          ぶっ飛べ！<br />ゴールデン<br />ウィーク<br />2026
-        </h1>
-        <div className="flex gap-6 mt-2">
-          <span className="bg-white/20 backdrop-blur text-white font-black text-lg px-4 py-2 rounded-xl">白馬 HAKUBA</span>
-          <span className="bg-white/20 backdrop-blur text-white font-black text-lg px-4 py-2 rounded-xl">松本 MATSUMOTO</span>
-        </div>
-        <p className="text-white/70 text-xs mt-6">一緒に冒険！がちゃ ＆ わちゃ 🌟</p>
-      </div>
-    )
-  }
+  const [imgLoaded, setImgLoaded] = useState(false)
 
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src="/cover.jpg"
-      alt="ぶっ飛べ！ゴールデンウィーク2026"
-      className="w-full h-auto object-cover"
-      onError={() => setFailed(true)}
-    />
+    <div className="relative w-full">
+      {/* Fallback: always rendered, hidden only when real image loaded */}
+      <div
+        className="w-full flex flex-col items-center justify-center text-center px-6 py-14 transition-opacity duration-500"
+        style={{
+          background: 'linear-gradient(160deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #533483 100%)',
+          opacity: imgLoaded ? 0 : 1,
+          position: imgLoaded ? 'absolute' : 'relative',
+          inset: 0,
+          pointerEvents: imgLoaded ? 'none' : 'auto',
+        }}
+      >
+        {/* Stars */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {['⭐','🌟','✨','💫','⭐','🌟','✨','💫','⭐','🌟'].map((s, i) => (
+            <span
+              key={i}
+              className="absolute text-xl sparkle"
+              style={{
+                left: `${(i * 11 + 5) % 100}%`,
+                top: `${(i * 17 + 8) % 80}%`,
+                animationDelay: `${i * 0.3}s`,
+                opacity: 0.7,
+              }}
+            >{s}</span>
+          ))}
+        </div>
+
+        {/* Bunting flags row */}
+        <div className="flex gap-1 mb-6 flex-wrap justify-center">
+          {['#FF6B6B','#FFD93D','#6BCB77','#4D96FF','#FF6B6B','#C77DFF','#FFD93D','#6BCB77'].map((c, i) => (
+            <div
+              key={i}
+              className="w-6 h-8"
+              style={{ backgroundColor: c, clipPath: 'polygon(0 0, 100% 0, 50% 100%)', opacity: 0.9 }}
+            />
+          ))}
+        </div>
+
+        <p className="text-white/80 text-sm font-bold tracking-widest mb-1">家族でたのしむ！</p>
+        <h1 className="font-black leading-none mb-3" style={{
+          fontSize: 'clamp(2.5rem, 12vw, 4.5rem)',
+          background: 'linear-gradient(90deg, #FFD700, #FF8C00, #FF69B4, #00BFFF, #7FFF00)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.4))',
+        }}>
+          ぶっ飛べ！<br />
+          <span style={{ fontSize: '0.85em' }}>ゴールデンウィーク</span><br />
+          <span style={{ fontSize: '1.2em', letterSpacing: '-0.02em' }}>2026</span>
+        </h1>
+
+        <div className="flex gap-3 mt-3 flex-wrap justify-center">
+          {[
+            { label: '白馬', en: 'HAKUBA', emoji: '🏔️' },
+            { label: '松本', en: 'MATSUMOTO', emoji: '🏯' },
+          ].map((p) => (
+            <div
+              key={p.label}
+              className="flex items-center gap-2 px-4 py-2 rounded-2xl font-bold text-white"
+              style={{ background: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(8px)', border: '1.5px solid rgba(255,255,255,0.3)' }}
+            >
+              <span className="text-xl">{p.emoji}</span>
+              <div className="text-left leading-tight">
+                <div className="text-base">{p.label}</div>
+                <div className="text-xs opacity-70">{p.en}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 flex gap-3 text-2xl">
+          {['🎈','🚗','🏊','🧗','♨️','🏯'].map((e, i) => (
+            <span key={i} className="animate-bounce-slow" style={{ animationDelay: `${i * 0.15}s` }}>{e}</span>
+          ))}
+        </div>
+
+        <p className="text-white/60 text-sm mt-5 font-bold">一緒に冒険！がちゃ ＆ わちゃ 🌟</p>
+      </div>
+
+      {/* Real image: loads silently, shown on success */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/cover.jpg"
+        alt="ぶっ飛べ！ゴールデンウィーク2026"
+        className="w-full h-auto object-cover transition-opacity duration-500"
+        style={{ opacity: imgLoaded ? 1 : 0, display: 'block' }}
+        onLoad={() => setImgLoaded(true)}
+        onError={() => {/* keep fallback */}}
+      />
+    </div>
   )
 }
 
@@ -580,7 +644,6 @@ export default function Home() {
               { emoji: '📅', label: '5月5日〜7日', sub: '3日間' },
               { emoji: '📍', label: '白馬・松本', sub: '長野県' },
               { emoji: '👨‍👩‍👧‍👦', label: '家族4人', sub: 'がちゃ＆わちゃ' },
-              { emoji: '🎯', label: 'アクティビティ', sub: '盛りだくさん' },
             ].map((s, i) => (
               <div key={i} className="flex flex-col items-center gap-0.5">
                 <span className="text-2xl">{s.emoji}</span>
