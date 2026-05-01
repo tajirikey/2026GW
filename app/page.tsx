@@ -102,12 +102,22 @@ const DAYS: Day[] = [
     events: [
       {
         time: '08:22',
+        endTime: '08:45',
+        kind: 'train',
+        title: '在来線（中央線）',
+        sub: '国分寺で乗換',
+        isTransport: true,
+        from: '武蔵境',
+        to: '立川',
+      },
+      {
+        time: '08:45',
         endTime: '11:27',
         kind: 'train',
         title: '特急あずさ',
-        note: '国分寺・立川で乗換。忘れ物チェック！車窓から富士山が見えるかも🗻',
+        note: '忘れ物チェック！車窓から富士山が見えるかも🗻',
         isTransport: true,
-        from: '武蔵境',
+        from: '立川',
         to: '松本',
       },
       {
