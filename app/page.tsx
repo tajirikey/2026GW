@@ -112,7 +112,7 @@ const DAYS: Day[] = [
         isTransport: true,
         from: '武蔵境',
         to: '立川',
-        link: 'https://www.google.com/maps/dir/?api=1&origin=武蔵境駅&destination=立川駅&travelmode=transit',
+        link: 'https://maps.google.com/maps?saddr=武蔵境駅&daddr=立川駅&dirflg=r&time=8:22am&date=5/5/2026',
       },
       {
         time: '08:45',
@@ -123,7 +123,7 @@ const DAYS: Day[] = [
         isTransport: true,
         from: '立川',
         to: '松本',
-        link: 'https://www.google.com/maps/dir/?api=1&origin=立川駅&destination=松本駅&travelmode=transit',
+        link: 'https://maps.google.com/maps?saddr=立川駅&daddr=松本駅&dirflg=r&time=8:45am&date=5/5/2026',
       },
       {
         time: '11:27',
@@ -160,7 +160,7 @@ const DAYS: Day[] = [
         isTransport: true,
         from: '松本',
         to: '白馬',
-        link: 'https://www.google.com/maps/dir/?api=1&origin=松本駅&destination=白馬村,長野県&travelmode=driving',
+        link: 'https://www.google.com/maps/dir/?api=1&origin=松本駅&destination=白馬村,長野県&travelmode=driving&avoid=tolls',
       },
       {
         time: '17:30',
@@ -372,7 +372,7 @@ const DAYS: Day[] = [
         isTransport: true,
         from: '松本',
         to: '武蔵境',
-        link: 'https://www.google.com/maps/dir/?api=1&origin=松本駅&destination=武蔵境駅&travelmode=transit',
+        link: 'https://maps.google.com/maps?saddr=松本駅&daddr=武蔵境駅&dirflg=r&time=1:45pm&date=5/7/2026',
       },
       {
         time: '16:20',
